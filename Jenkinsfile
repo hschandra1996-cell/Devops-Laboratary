@@ -1,0 +1,19 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Run Python Script') {
+            steps {
+                script {
+                    dir ('test') {
+                        if (isUnix()) {
+                            sh 'python3 python.py 25'
+                        } else {
+                            bat 'python python.py 25'
+                        }
+                    }    
+                }
+            }
+        }
+    }
+}
