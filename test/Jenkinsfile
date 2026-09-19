@@ -2,11 +2,15 @@ pipeline {
     agent any
 
     stages {
-        stage('Test') {
+        stage('Run Python Script') {
             steps {
-                sh '''
-                    echo "My first Jenkins job"
-                '''
+                script {
+                    if (isUnix()) {
+                        sh 'python3 python.py 25'
+                    } else {
+                        bat 'python python.py 25'
+                    }
+                }
             }
         }
     }
